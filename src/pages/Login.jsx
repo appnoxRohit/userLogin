@@ -81,7 +81,7 @@ const Login = () => {
           />
           {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
         </div>
-        <Button type="submit" variant='contained' className="w-full mt-4">
+        <Button type="submit" variant='outlined' className="w-full mt-4">
           Login
         </Button>
       </form>
