@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { Button } from '@mui/material';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/slice';
 
 const Login = () => {
   const { register, reset, formState: { errors }, handleSubmit } = useForm();
   const [succesMessage, setSucessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
     try {
@@ -20,7 +25,12 @@ const Login = () => {
       if (user) {
        
         setSucessMessage('Login successful');
+
+       
+        dispatch(setUser(user));
+
         reset();
+        navigate('/dashboard')
       } else {
         
         setErrorMessage("Login failed. Invalid email or password.");

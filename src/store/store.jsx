@@ -1,10 +1,10 @@
 // src/store.js
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './slice.jsx'
+import loginReducer from './slice.jsx';
 
 const store = configureStore({
   reducer: {
-    auth: authReducer,
+    auth: loginReducer,  // The 'auth' slice of state is managed by the loginReducer
   },
 });
 
