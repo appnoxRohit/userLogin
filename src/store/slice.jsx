@@ -16,7 +16,8 @@ const loginSlice = createSlice({
     },
     logout(state) {
       state.user = null;              // Clear user data on logout
-      state.isAuthenticated = false;  // Mark as not authenticated
+      state.isAuthenticated = false;
+        // Mark as not authenticated
     },
   },
 });

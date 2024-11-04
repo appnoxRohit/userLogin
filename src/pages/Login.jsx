@@ -4,19 +4,28 @@
   import axios from 'axios';
   import { useNavigate } from 'react-router-dom';
   import { useDispatch } from 'react-redux';
-  import { setUser } from '../store/slice';
-  import {IconButton} from '@mui/material';
-  import { Visibility, VisibilityOff } from '@mui/icons-material';
-
+  import { logout, setUser } from '../store/slice';
+  import { useAuth0 } from '@auth0/auth0-react';
+  import GoogleIcon from '@mui/icons-material/Google';
+  import { NavLink } from 'react-router-dom';
 
   const Login = () => {
+    
     const { register, reset, formState: { errors }, handleSubmit } = useForm();
     const [succesMessage, setSucessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const [showPassword , setShowPassword] =useState('false');
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    
+
+    const {user , loginWithRedirect , isAuthenticated ,error , logout: authLogout } = useAuth0();
+ 
+ 
+    console.log('auth',isAuthenticated)
+
+    
+    
     const onSubmit = async (data) => {
       try {
         
@@ -47,13 +56,18 @@
         console.error("Login failed:", error.response ? error.response.data : error.message);
       }
     }
+    const handleLogout = () =>{
+
+    };
     const togglePasswordVisibility = () => {
       setShowPassword(prevShowPassword => !prevShowPassword);
     };
 
-    const handleReset = () =>{
-      navigate('/ResetPassword')
-    }
+   
+    // const handleReset = () =>{
+    //   navigate('/ResetPassword')
+    // }
+    
 
 
     useEffect(() => {
@@ -78,8 +92,17 @@
     }, [errorMessage]);
 
     return (
-      <div className='flex flex-col items-center p-4 pt-[150px]'>
-        <h1 className="text-lg font-bold">Login </h1>
+      <div className='flex flex-col items-center p-4 pt-[150px]'>   
+
+      {isAuthenticated ? (
+        <Button  onClick={() => authLogout({ logoutParams: { returnTo: window.location.origin } })}>Logout</Button>
+      ) : (
+        <Button className='font-bold text-black' onClick={() => loginWithRedirect()}>Google</Button>
+      )}
+
+        <h1 className="text-mg font-bold">or </h1>
+
+        <h1 className="text-mg font-bold">Login </h1>
         {succesMessage && (<p className='text-green-00 mb-4'>{succesMessage}</p>)}
         {errorMessage && (<p className='text-red-500 mb-4'>{errorMessage}</p>)}
         <form onSubmit={handleSubmit(onSubmit)} className='w-80'>
@@ -106,7 +129,7 @@
               className='border-2 border-gray-400 rounded-lg w-full p-2'
             />
             {/* <IconButton
-              onClick={togglePasswordVisibility}
+              onClick={togglewhen PasswordVisibility}
               className="absolute right-2 top-1/2 transform -translate-y-1/2"
               aria-label="toggle password visibility"
             >
@@ -114,11 +137,25 @@
             </IconButton> */}
             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
           </div>
-           <div className='text-xs flex justify-center pb-5 cursor-pointer' onClick={handleReset}>Forgot Password</div>
+           <div className='text-xs flex justify-center pb-5 cursor-pointer' ><NavLink 
+                to="/ResetPassword" 
+                className={({ isActive }) =>
+                  `text-black pl-3 font hover:text-blue-600 ${isActive ? "font-bold" : ""}`
+                }
+              >
+                Forgot password
+              </NavLink></div>
           <Button type="submit" variant='outlined' className="w-full mt-4">
             Login
           </Button>
-          <div className='text-xs flex justify-center mt-2'>Don't have an account?  <button className='text-xs pl-3' onClick={(navigate('/register'))}><strong>Register</strong></button></div>
+          <div className='text-xs flex justify-center mt-2'>Don't have an account? <NavLink 
+                to="/Register" 
+                className={({ isActive }) =>
+                  `text-black pl-3 font-bold hover:text-blue-600 ${isActive ? "font-bold" : ""}`
+                }
+              >
+                Register
+              </NavLink></div>
         </form>
       </div>
     );

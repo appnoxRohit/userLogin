@@ -2,6 +2,7 @@ import React, { useState ,useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { Button } from '@mui/material';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 const Register = () => {
   const { register, reset, formState: { errors }, handleSubmit } = useForm();
@@ -112,9 +113,19 @@ const Register = () => {
           {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
         </div>
 
+
         <Button type="submit" variant='outlined' className="w-full bg-[#F7B535] mt-4">
           Register
         </Button>
+        <div className='text-xs flex justify-center mt-3'>Already have an account?<NavLink 
+                to="/Login" 
+                className={({ isActive }) =>
+                  `text-black pl-3 font-bold hover:text-blue-600 ${isActive ? "font-bold" : ""}`
+                }
+              >
+                Login
+              </NavLink></div>
+
       </form>
     </div>
   );

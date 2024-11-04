@@ -2,18 +2,21 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../store/slice';
+import { NavLink } from 'react-router-dom';
 
 const Dashboard = () => {
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  
  
   
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
  
-  if (!isAuthenticated || !user) {
-    return <p>Please log in to view this page.</p>;
-  }
+  // if (!isAuthenticated || !user) {
+  //   return <p>Please log in to view this page.</p>;
+  
 
   return (
     <div className="flex flex-col items-center p-4 pt-[150px]">
