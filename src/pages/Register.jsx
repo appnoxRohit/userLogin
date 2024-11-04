@@ -12,14 +12,15 @@ const Register = () => {
 
     console.log("Form Data:", data); 
     try {
-      const response = await axios.post('https://672779ae270bd0b975529666.mockapi.io/login/users',{
+      const response = await axios.post('http://192.168.68.117:8000/api/register',{
         fname:data.fname,
         lname:data.lname,
         email:data.email,
-        password:data.password
+        password:data.password,
+        password_confirmation:data.password_confirmation
 
       });
-      if(response.status === 201){
+      if(response.status === 200){
         setSucessMessage('User registeredd sucessfully ! ');
         reset();
       }
@@ -27,6 +28,8 @@ const Register = () => {
       
     } catch (error) {
       console.error("Registration failed:", error);
+      console.error("Registration failed:", error.response.data);
+
       setErrorMessage('Registration failed. Please try again.');
     }
   };
@@ -93,6 +96,16 @@ const Register = () => {
           <label>Password:</label>
           <input
             {...register("password", { required: "Password is required", minLength: { value: 6, message: "Minimum 6 characters" } })}
+            type="password"
+            className='border-2 border-gray-400 rounded-lg w-full p-2'
+          />
+          {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+        </div>
+
+        <div className="mb-4">
+          <label>Confirm Password:</label>
+          <input
+            {...register("password_confirmation", { required: "Confirm Password is required", minLength: { value: 6, message: "Minimum 6 characters" } })}
             type="password"
             className='border-2 border-gray-400 rounded-lg w-full p-2'
           />
