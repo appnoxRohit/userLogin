@@ -51,6 +51,10 @@
       setShowPassword(prevShowPassword => !prevShowPassword);
     };
 
+    const handleReset = () =>{
+      navigate('/ResetPassword')
+    }
+
 
     useEffect(() => {
       const timer = setTimeout(() => {
@@ -75,27 +79,28 @@
 
     return (
       <div className='flex flex-col items-center p-4 pt-[150px]'>
-        <h1 className="text-lg font-bold">Login Page</h1>
+        <h1 className="text-lg font-bold">Login </h1>
         {succesMessage && (<p className='text-green-00 mb-4'>{succesMessage}</p>)}
         {errorMessage && (<p className='text-red-500 mb-4'>{errorMessage}</p>)}
         <form onSubmit={handleSubmit(onSubmit)} className='w-80'>
-          <div className="mb-4">
-            <label>Email:</label>
-            <input
+          <div className="mb-4 mt-6 ">
+            {/* <label>Email:</label> */}
+            <input placeholder='User Email'
               {...register("email", {
                 required: "Email is required",
+                
                 pattern: {
                   value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                  message: "Enter a valid email"
+                  message: "Enter a valid email",
                 }
               })}
               className='border-2 border-gray-400 rounded-lg w-full p-2'
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
           </div>
-          <div className="mb-4">
-            <label>Password:</label>
-            <input
+          <div className="mb-4 pt-2">
+            {/* <label>Password:</label> */}
+            <input placeholder='Password'
               {...register("password", { required: "Password is required", minLength: { value: 6, message: "Minimum 6 characters" } })}
               type="password"
               className='border-2 border-gray-400 rounded-lg w-full p-2'
@@ -109,9 +114,11 @@
             </IconButton> */}
             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
           </div>
+           <div className='text-xs flex justify-center pb-5 cursor-pointer' onClick={handleReset}>Forgot Password</div>
           <Button type="submit" variant='outlined' className="w-full mt-4">
             Login
           </Button>
+          <div className='text-xs flex justify-center mt-2'>Don't have an account?  <button className='text-xs pl-3' onClick={(navigate('/register'))}><strong>Register</strong></button></div>
         </form>
       </div>
     );
