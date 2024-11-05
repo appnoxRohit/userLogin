@@ -11,7 +11,7 @@ const Home = () => {
       <div className='flex justify-end' >{isAuthenticated?<NavLink to="/login" onClick={() => authLogout({ logoutParams: { returnTo: window.location.origin } })}>Logout</NavLink>:''}
       </div>
       <div className='h-[600px] flex justify-center items-center' >
-      <h1 className='text-2xl flex '>HOME PAGE</h1>
+      <h1 className='text-2xl flex text-[#66FCF2] '>HOME PAGE</h1>
       </div>
       
 

@@ -151,7 +151,7 @@
           <div className='text-xs flex justify-center mt-2'>Don't have an account? <NavLink 
                 to="/Register" 
                 className={({ isActive }) =>
-                  `text-black pl-3 font-bold hover:text-blue-600 ${isActive ? "font-bold" : ""}`
+                  `text-[#66FCF2] pl-3 font-bold hover:text-blue-600 ${isActive ? "font-bold" : ""}`
                 }
               >
                 Register

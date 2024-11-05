@@ -25,7 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     domain="dev-mcghumbb0c71y3oo.us.auth0.com"
     clientId="VmhwabgwsgN8r2sjpRdkCiCcJFlUQ0js"
     authorizationParams={{
-      redirect_uri: `${window.location.origin}/login`      
+      redirect_uri: window.location.origin      
     }}
     // onRedirectCallback={onRedirectCallback}
   >
