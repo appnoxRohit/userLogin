@@ -3,15 +3,15 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav>
-      <div className="flex fixed top-0 w-full bg-[#1e1e1e] z-50 h-20 border-2 border-black">
+      <div className="flex fixed text-[#66FCF2] top-0 w-full bg-[#1e1e1e] z-50 h-20 border-2 border-black">
         <ul className="flex items-center w-full">
-          <li className="text-lg text-white pl-3"><strong>Logo</strong></li>
+          <li className="text-lg  pl-3"><strong>Logo</strong></li>
           <div className="flex flex-row justify-end gap-5 ml-auto">
             <li>
               <NavLink 
                 to="/" 
                 className={({ isActive }) =>
-                  `text-white hover:text-blue-600 ${isActive ? "font-bold" : ""}`
+                  ` hover:text-blue-600 ${isActive ? "font-bold" : ""}`
                 }
               >
                 Home
@@ -21,7 +21,7 @@ const Navbar = () => {
               <NavLink 
                 to="/Login" 
                 className={({ isActive }) =>
-                  `text-white hover:text-blue-600 ${isActive ? "font-bold" : ""}`
+                  ` hover:text-blue-600 ${isActive ? "font-bold" : ""}`
                 }
               >
                 Login
@@ -31,7 +31,7 @@ const Navbar = () => {
               <NavLink 
                 to="/Register" 
                 className={({ isActive }) =>
-                  `text-white hover:text-blue-600 ${isActive ? "font-bold" : ""}`
+                  ` hover:text-blue-600 ${isActive ? "font-bold" : ""}`
                 }
               >
                 Register

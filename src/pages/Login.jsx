@@ -92,7 +92,7 @@
     }, [errorMessage]);
 
     return (
-      <div className='flex flex-col items-center p-4 pt-[150px]'>   
+      <div className='flex flex-col text-[#66FCF2] items-center p-4 pt-[150px]'>   
 
       {isAuthenticated ? (
         <Button  onClick={() => authLogout({ logoutParams: { returnTo: window.location.origin } })}>Logout</Button>
@@ -100,9 +100,9 @@
         <Button className='font-bold text-black' onClick={() => loginWithRedirect()}>Google</Button>
       )}
 
-        <h1 className="text-mg font-bold">or </h1>
+        <h1 className="text-lg font-bold">or </h1>
 
-        <h1 className="text-mg font-bold">Login </h1>
+        <h1 className="text-2 xl font-bold">Login </h1>
         {succesMessage && (<p className='text-green-00 mb-4'>{succesMessage}</p>)}
         {errorMessage && (<p className='text-red-500 mb-4'>{errorMessage}</p>)}
         <form onSubmit={handleSubmit(onSubmit)} className='w-80'>
@@ -137,10 +137,10 @@
             </IconButton> */}
             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
           </div>
-           <div className='text-xs flex justify-center pb-5 cursor-pointer' ><NavLink 
+           <div className='text-base flex justify-center pb-5 cursor-pointer' ><NavLink 
                 to="/ResetPassword" 
                 className={({ isActive }) =>
-                  `text-black pl-3 font hover:text-blue-600 ${isActive ? "font-bold" : ""}`
+                  ` pl-3 font hover:text-blue-600 ${isActive ? "font-bold" : ""}`
                 }
               >
                 Forgot password
@@ -148,7 +148,7 @@
           <Button type="submit" variant='outlined' className="w-full mt-4">
             Login
           </Button>
-          <div className='text-xs flex justify-center mt-2'>Don't have an account? <NavLink 
+          <div className='text-base flex justify-center mt-2'>Don't have an account? <NavLink 
                 to="/Register" 
                 className={({ isActive }) =>
                   `text-[#66FCF2] pl-3 font-bold hover:text-blue-600 ${isActive ? "font-bold" : ""}`
