@@ -26,6 +26,7 @@ const loginSlice = createSlice({
       state.user = { ...state.user, ...action.payload.data.user };
       localStorage.setItem("user", action.payload.data.user);
     },
+    
   },
 });
 

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Button  } from "@mui/material";
 import { logout } from "../store/slice";
@@ -7,6 +7,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
 
@@ -17,12 +18,16 @@ const Navbar = () => {
   const toggleProfileDropdown = () => {
     setShowProfileDropdown((prev) => !prev); // Toggle profile dropdown visibility
   };
+  const handleHome =()=>{
+    navigate('/')
+  }
+
 
   return (
     <nav>
-      <div className="flex fixed text-[#66FCF2] top-0 w-full bg-[#1e1e1e] z-50 h-20 border-2 border-black">
+      <div className="flex fixed text-[#274888] top-0 w-full bg-[#e2e4e6] z-50 h-20 border-2 border-black">
         <ul className="flex items-center w-full">
-          <li className="text-lg pl-3">
+          <li onClick={handleHome}  className="text-lg cursor-pointer pl-3">
             <strong>Logo</strong>
           </li>
           <div className="flex flex-row justify-end gap-5 ml-auto">
@@ -63,10 +68,10 @@ const Navbar = () => {
                   <div className="absolute right-0 mt-12 bg-white shadow-md rounded-lg w-48 text-black">
                     <ul className="p-2">
                       <li className="py-2 px-4 hover:bg-gray-200 rounded-full cursor-pointer">
-                        <NavLink to="/profile">View Profile</NavLink>
+                        <NavLink to="/editUser">Edit User</NavLink>
                       </li>
                       <li className="py-2 px-4 hover:bg-gray-200 rounded-full cursor-pointer">
-                        <NavLink to="/settings">Settings</NavLink>
+                        <NavLink to="/dashboard">Dashboard</NavLink>
                       </li>
                       <li className="hover:bg-red-300 rounded-full cursor-pointer py-2 px-4 ">
                         <NavLink to="/" onClick ={()=>{handleLogout(); setShowProfileDropdown(false);}} >

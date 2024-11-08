@@ -36,7 +36,7 @@ const Login = () => {
         dispatch(setUser({ user, token }));
 
         reset();
-        navigate('/dashboard');
+        navigate('/');
       } else {
         setErrorMessage("Login failed. Invalid email or password.");
       }
@@ -64,12 +64,12 @@ const Login = () => {
   }, [errorMessage]);
 
   return (
-    <div className='flex flex-col text-[#66FCF2] items-center p-4 pt-[150px]'>   
+    <div className='flex flex-col items-center p-4 pt-[150px]'>   
       {isAuthenticated ? (
         <Button onClick={handleLogout}>Logout</Button>
       ) : (
         <Button
-          className="font-bold text-black"
+          className="font-bold text-[#66FCF2] "
           onClick={() => loginWithRedirect()}
           startIcon={<GoogleIcon />}
         >
@@ -77,15 +77,15 @@ const Login = () => {
         </Button>
       )}
 
-      <h1 className="text-lg font-bold">or</h1>
-      <h1 className="text-2xl font-bold">Login</h1>
+      <h1 className="text-lg text-[#66FCF2] font-bold">or</h1>
+      <h1 className="text-2xl text-[#66FCF2] font-bold">Login</h1>
 
       {successMessage && (<p className='text-green-500 mb-4'>{successMessage}</p>)}
       {errorMessage && (<p className='text-red-500 mb-4'>{errorMessage}</p>)}
 
       <form onSubmit={handleSubmit(onSubmit)} className='w-80'>
         <div className="mb-4 mt-6">
-          <input
+          <input 
             placeholder='User Email'
             {...register("email", {
               required: "Email is required",
@@ -110,7 +110,7 @@ const Login = () => {
         </div>
 
         <div className='text-base flex justify-center pb-5 cursor-pointer'>
-          <NavLink to="/ResetPassword" className="pl-3 font hover:text-blue-600">
+          <NavLink to="/ResetPassword" className="pl-3 text-[#66FCF2] font hover:text-blue-600">
             Forgot password
           </NavLink>
         </div>
@@ -119,7 +119,7 @@ const Login = () => {
           Login
         </Button>
 
-        <div className='text-base flex justify-center mt-2'>
+        <div className='text-base text-[#66FCF2] flex justify-center mt-2'>
           Don't have an account? 
           <NavLink to="/Register" className="text-[#66FCF2] pl-3 font-bold hover:text-blue-600">
             Register

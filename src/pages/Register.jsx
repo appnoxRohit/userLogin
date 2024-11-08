@@ -72,10 +72,10 @@ const Register = () => {
 
       {succesMessage && <p className="text-green-500 mb-4">{succesMessage}</p>}
       {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
-      <form onSubmit={handleSubmit(onSubmit)} className=" text-[#66FCF2] w-80">
+      <form onSubmit={handleSubmit(onSubmit)} className="  w-80">
         {/* First Name Field */}
         <div className="mb-4">
-          <label>First Name:</label>
+          <label className="text-[#66FCF2]">First Name:</label>
           <input
             {...register("fname", {
               required: "First name is required",
@@ -91,7 +91,7 @@ const Register = () => {
 
         {/* Last Name Field */}
         <div className="mb-4">
-          <label>Last Name:</label>
+          <label className="text-[#66FCF2]">Last Name:</label>
           <input
             {...register("lname", {
               required: "Last name is required",
@@ -107,7 +107,7 @@ const Register = () => {
 
         {/* Email Field */}
         <div className="mb-4">
-          <label>Email:</label>
+          <label className="text-[#66FCF2]">Email:</label>
           <input
             {...register("email", {
               required: "Email is required",
@@ -125,7 +125,7 @@ const Register = () => {
 
         {/* Password Field */}
         <div className="mb-4">
-          <label>Password:</label>
+          <label className="text-[#66FCF2]">Password:</label>
           <input
             {...register("password", {
               required: "Password is required",
@@ -140,7 +140,7 @@ const Register = () => {
         </div>
 
         <div className="mb-4">
-          <label>Confirm Password:</label>
+          <label className="text-[#66FCF2]">Confirm Password:</label>
           <input
             {...register("password_confirmation", {
               required: "Confirm Password is required",
