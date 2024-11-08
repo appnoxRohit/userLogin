@@ -1,42 +1,83 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Button  } from "@mui/material";
+import { logout } from "../store/slice";
+import { useState } from "react";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+
+  const handleLogout = () => {
+    dispatch(logout()); // Dispatch logout action to clear token and user data
+  };
+
+  const toggleProfileDropdown = () => {
+    setShowProfileDropdown((prev) => !prev); // Toggle profile dropdown visibility
+  };
+
   return (
     <nav>
       <div className="flex fixed text-[#66FCF2] top-0 w-full bg-[#1e1e1e] z-50 h-20 border-2 border-black">
         <ul className="flex items-center w-full">
-          <li className="text-lg  pl-3"><strong>Logo</strong></li>
+          <li className="text-lg pl-3">
+            <strong>Logo</strong>
+          </li>
           <div className="flex flex-row justify-end gap-5 ml-auto">
-            <li>
-              <NavLink 
-                to="/" 
-                className={({ isActive }) =>
-                  ` hover:text-blue-600 ${isActive ? "font-bold" : ""}`
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink 
-                to="/Login" 
-                className={({ isActive }) =>
-                  ` hover:text-blue-600 ${isActive ? "font-bold" : ""}`
-                }
-              >
-                Login
-              </NavLink>
-            </li>
-            <li>
-              <NavLink 
-                to="/Register" 
-                className={({ isActive }) =>
-                  ` hover:text-blue-600 ${isActive ? "font-bold" : ""}`
-                }
-              >
-                Register
-              </NavLink>
-            </li>
+            {!token ? (
+              <div className="flex gap-4">
+                <li>
+                  <NavLink
+                    to="/Login"
+                    className={({ isActive }) =>
+                      `hover:text-blue-600 ${isActive ? "font-bold" : ""}`
+                    }
+                  >
+                    Login
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/Register"
+                    className={({ isActive }) =>
+                      `hover:text-blue-600 ${isActive ? "font-bold" : ""}`
+                    }
+                  >
+                    Register
+                  </NavLink>
+                </li>
+              </div>
+            ) : (
+              <>
+                <Button
+                  className="font-bold text-black"
+                  onClick={toggleProfileDropdown}
+                  
+                >
+                 <AccountCircleIcon className="text-white cursor-pointer" fontSize="large" />
+                </Button>
+
+                {showProfileDropdown && (
+                  <div className="absolute right-0 mt-12 bg-white shadow-md rounded-lg w-48 text-black">
+                    <ul className="p-2">
+                      <li className="py-2 px-4 hover:bg-gray-200 rounded-full cursor-pointer">
+                        <NavLink to="/profile">View Profile</NavLink>
+                      </li>
+                      <li className="py-2 px-4 hover:bg-gray-200 rounded-full cursor-pointer">
+                        <NavLink to="/settings">Settings</NavLink>
+                      </li>
+                      <li className="hover:bg-red-300 rounded-full cursor-pointer py-2 px-4 ">
+                        <NavLink to="/" onClick ={()=>{handleLogout(); setShowProfileDropdown(false);}} >
+                          Logout
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </ul>
       </div>

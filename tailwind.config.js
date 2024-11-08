@@ -5,7 +5,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}", // Include all JSX/TSX files
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'dm-serif': ['"DM Serif Display"', 'serif'],
+        inter: ['Inter', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

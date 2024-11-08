@@ -51,6 +51,21 @@ const Register = () => {
     };
   }, [succesMessage]);
 
+  useEffect(() => {
+    let timer;
+    if(errorMessage){
+      timer=setTimeout(() => {
+        setErrorMessage("")
+        
+      }, 5000);
+    }
+  
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [errorMessage])
+  
+
   return (
     <div className="flex flex-col items-center p-4 pt-[150px]">
       <h1 className="text-lg text-[#66FCF2] font-bold">Register Page</h1>
